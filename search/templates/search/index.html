@@ -1,0 +1,22 @@
+{% extends 'base_site.html' %}
+{% load staticfiles %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "homepage.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="search_container">
+        <input id="search_box" type="text" name="search_for" title="Search" aria-label="Search" placeholder="Search"/>
+    </div>
+    <script src="{% static "jquery.js" %}"></script>
+    <script>
+        $('#search_box').keypress(function (e) {
+            if (e.which == 13) {
+                var encoded = encodeURIComponent($('#search_box')[0].value);
+                window.location.href = "{% url 'search:search_for' %}?q=" + encoded;
+            }
+        });
+    </script>
+{% endblock %}

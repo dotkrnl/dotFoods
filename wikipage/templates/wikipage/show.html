@@ -1,0 +1,29 @@
+{% extends 'base_site.html' %}
+{% load staticfiles %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "vector.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "dotmin.css" %}">
+{% endblock %}
+
+{% block content %}
+    <ul class="tags">
+        {% for list in lists.all %}
+            {% if forloop.counter == 1 %}
+            <li><a class="fake_tag">{{ _('Lists') }}</a></li>
+            {% endif %}
+            <li><a class="tag">{{ list.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <ul class="tags">
+        {% for cate in categories.all %}
+            {% if forloop.counter == 1 %}
+            <li><a class="fake_tag">{{ _('Categories') }}</a></li>
+            {% endif %}
+            <li><a class="tag">{{ cate.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <div id="hot_area"></div>
+    {{ body | safe }}
+{% endblock %}

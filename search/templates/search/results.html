@@ -1,0 +1,79 @@
+{% extends 'base_site.html' %}
+{% load staticfiles %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "results.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "token-input-facebook.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div id="list_filter">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="label"><label>Lists</label></div>
+            <input type="text" id="lists" name="lists">
+            <div class="label martop"><label>Categories</label></div>
+            <input type="text" id="categories" name="categories">
+            <input class="list_filter martop" type="submit" name="submit" value="Filter">
+        </form>
+    </div>
+
+    <div class="search_container">
+        <input id="search_box" type="text" name="search_for"
+               title="Search" aria-label="Search" placeholder="Search"
+               value="{{ keyword }}" />
+    </div>
+
+    <div id="search_results">
+        {% include 'search/results_items.html' %}
+    </div>
+
+    <script src="{% static "jquery.js" %}"></script>
+    <script src="{% static "jquery.tokeninput.js" %}"></script>
+    <script src="{% static "endless_pagination/js/endless-pagination.js" %}"></script>
+    <script>
+        $.endlessPaginate({
+            paginateOnScroll: true,
+            paginateOnScrollChunkSize: 5
+        });
+
+        $('#search_box').keypress(function (e) {
+            if (e.which == 13) {
+                var encoded = encodeURIComponent($('#search_box')[0].value);
+                window.location.href = "{% url 'search:search_for' %}?q=" + encoded;
+            }
+        });
+        $(document).ready(function() {
+            $("#lists").tokenInput([
+                {% for list in lists %}
+                    {id: '{{ list.url_name }}', name: '{{ list.title }}'},
+                {% endfor %}
+            ] , {
+                prePopulate: [
+                    {% for list in selected_lists %}
+                        {id: '{{ list.url_name }}', name: '{{ list.title }}'},
+                    {% endfor %}
+                ],
+                theme: 'facebook',
+                hintText: "Show foods in which lists?",
+                preventDuplicates: true
+            });
+
+            $("#categories").tokenInput([
+                {% for cat in categories %}
+                    {id: '{{ cat.url_name }}', name: '{{ cat.title }}'},
+                {% endfor %}
+            ] , {
+                prePopulate: [
+                    {% for cat in selected_cates %}
+                        {id: '{{ cat.url_name }}', name: '{{ cat.title }}'},
+                    {% endfor %}
+                ],
+                theme: 'facebook',
+                hintText: "Show foods in which categories?",
+                preventDuplicates: true
+            });
+        });
+    </script>
+{% endblock %}

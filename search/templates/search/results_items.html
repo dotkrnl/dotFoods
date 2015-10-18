@@ -1,0 +1,21 @@
+{% load endless %}
+
+{% lazy_paginate pages %}
+{% for page in pages %}
+    <div class="search_item">
+        <div class="search_title">
+            <a href="{% url 'wikipage:show' url_name=page.url_name %}">{{ page.title }}</a>
+        </div>
+        <div class="search_weight">
+             <a>weight: {{ page.weight |floatformat:-3 }}</a>
+        </div>
+        <div class="search_origin">
+            <a href="{{ page.origin }}">source: {{ page.origin }}</a>
+        </div>
+    </div>
+{% empty %}
+    <div class="endless_container">
+        <a class="endless_loading" href="/">no results</a>
+    </div>
+{% endfor %}
+{% show_more %}

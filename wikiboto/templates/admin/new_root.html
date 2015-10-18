@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+{% endblock %}
+
+{% block content %}
+    <h1>{{  _('Add Root Node of Craweler') }}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <fieldset class="module aligned ">
+        {% for field in form %}
+            <div class="form-row">
+                {{ field.errors }}
+                <div>
+                    <label class="required" for="id_keyword">
+                        {{ field.label_tag }}
+                    </label>
+                    {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+        </fieldset>
+        <div class="submit-row">
+            <input type="submit" value="{{ _('Crawl !') }}" class="default" />
+        </div>
+    </form>
+{% endblock %}

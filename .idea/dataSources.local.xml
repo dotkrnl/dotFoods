@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Django default" uuid="ff7ea1e6-bb64-495f-a572-b21e81a9ee2d">
+      <user-name>dotkrnl</user-name>
+      <schema-pattern>dotfoods.pg_catalog dotfoods.public</schema-pattern>
+      <default-schemas>dotfoods.pg_catalog dotfoods.public</default-schemas>
+    </data-source>
+    <data-source name="Django default2" uuid="dbec0906-8931-4e03-b8dc-155a3f7916ed">
+      <user-name>dotkrnl</user-name>
+      <schema-pattern>dotfoods.pg_catalog dotfoods.public</schema-pattern>
+      <default-schemas>dotfoods.pg_catalog dotfoods.public</default-schemas>
+    </data-source>
+  </component>
+</project>

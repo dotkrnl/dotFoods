@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+{% load i18n staticfiles %}p
+
+{% block title %}
+    {% if title %}
+    {{ title }}
+    {% else %}
+    {{ _('dotFoods') }}
+    {% endif %}
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'search:index' %}">{{ _('dotFoods') }}</a></h1>
+{% endblock %}
+
+{% block usertools %}
+    <div id="user-tools">
+        {% trans 'Welcome, enjoy the foods.' %}
+        {% comment %}
+        <a href="{% url 'search:index' %}">{{ _('Search') }}</a> /
+        <a href="">{{ _('Lists') }}</a> /
+        <a href="">{{ _('Categories') }}</a>
+        {% endcomment %}
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}

@@ -1,0 +1,61 @@
+#header {
+    height: 300px;
+    position: relative;
+}
+
+#header #branding {
+    position: absolute;
+    float: none;
+    bottom: 50px;
+    left: 0; right: 0;
+    text-align: center;
+}
+
+#header h1 {
+    font-size: 100px;
+    line-height: 1em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+#site-name a {
+    color: white !important;
+}
+
+#content {
+    padding: 10px 0 0 0;
+}
+
+.search_container {
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+#search_box {
+    box-sizing: border-box;
+    text-indent: 15px;
+    margin: 0 20px 0 0;
+    width: 500px;
+    height: 70px;
+    background-color: #EEE;
+    font-size: 30px;
+    line-height: 40px;
+    color: #417690;
+    border: none;
+}
+
+#search_box::-webkit-input-placeholder {
+    color: #a1c6d9;
+}
+#search_box:-moz-placeholder {
+    color: #a1c6d9;
+    opacity:  1;
+}
+#search_box::-moz-placeholder {
+    color:    #a1c6d9;
+    opacity:  1;
+}
+#search_box:-ms-input-placeholder {
+    color:    #a1c6d9;
+}
